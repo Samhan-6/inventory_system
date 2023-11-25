@@ -82,7 +82,7 @@ DATABASES = {
         'PORT': '',
         'NAME': 'IMS',
         'USER': 'sa',
-        'PASSWORD': 'nim#MBI&ccr',
+        'PASSWORD': '',
 
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
