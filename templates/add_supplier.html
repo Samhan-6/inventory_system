@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit Supplier</title>
+</head>
+<body>
+    <h1>Supplier Management</h1>
+
+    <!-- Add/Edit Supplier Form -->
+    <h2>
+    {% if edit_supplier %}
+        Edit Supplier
+    {% else %}
+        Add New Supplier
+    {% endif %}
+</h2>
+
+    <form action="{% url 'add_supplier' %}" method="POST">
+    {% csrf_token %}
+    {% if edit_supplier %}
+        <input type="hidden" name="supplier_id" value="{{ edit_supplier.supplier_id }}">
+    {% endif %}
+
+        <label for="supplier_code">Supplier Code:</label>
+        <input type="text" id="supplier_code" name="supplier_code" value="{% if edit_supplier %}{{ edit_supplier.supplier_code }}{% endif %}" required>
+
+        <label for="supplier_name">Supplier Name:</label>
+        <input type="text" id="supplier_name" name="supplier_name" value="{% if edit_supplier %}{{ edit_supplier.supplier_name }}{% endif %}" required>
+
+        <label for="supplier_address">Supplier Address:</label>
+        <textarea id="supplier_address" name="supplier_address" required>{% if edit_supplier %}{{ edit_supplier.supplier_address }}{% endif %}</textarea>
+
+        <label for="supplier_city">Supplier City:</label>
+        <input type="text" id="supplier_city" name="supplier_city" value="{% if edit_supplier %}{{ edit_supplier.supplier_city}}{% endif %}" required>
+
+        <label for="supplier_country">Supplier Country:</label>
+        <input type="text" id="supplier_country" name="supplier_country" value="{% if edit_supplier %}{{ edit_supplier.supplier_city}}{% endif %}" required>
+
+        <label for="supplier_postalCode">Supplier Postal Code:</label>
+        <input type="text" id="supplier_postalCode" name="supplier_postalCode" value="{% if edit_supplier %}{{ edit_supplier.supplier_postalCode}}{% endif %}" required>
+
+        <button type="submit">
+        {% if edit_supplier %}
+            Update
+
+        {% else %}
+            Add Supplier
+        {% endif %}
+    </button>
+
+        {% if edit_supplier %}
+        <button type="submit" name="delete_supplier">Delete</button>
+    {% endif %}
+</form>
+
+<h2>Available Suppliers</h2>
+<ul>
+    {% for supplier in suppliers %}
+        <li>
+            {{ supplier.supplier_code }} - {{ supplier.supplier_name }}
+            <a href="?supplier_id={{ supplier.supplier_id }}">Edit</a>
+        </li>
+    {% endfor %}
+</ul>
+
+    <!-- Display Success or Error Messages -->
+{% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
+{% endif %}
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+</body>
+</html>
