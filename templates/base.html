@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This is for title -->
+    <title>{% block title %} {% endblock %}</title>
+    <!-- This is for icon -->
+    {% block icon %} {% endblock %}
+    <!-- This is for load css -->
+    {% block css %} {% endblock %}
+    <!-- This is for load js -->
+    {% block js %} {% endblock %}
+
+</head>
+
+
+<body>
+
+    <header>
+        <!-- This for header section -->
+        {% block header %} {% endblock %}
+    </header>
+
+
+    <!-- This is for content section -->
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+
+    <!-- This for footer section -->
+    <footer>
+        {% block footer %} {% endblock %}
+    </footer>
+
+</body>
+</html>
